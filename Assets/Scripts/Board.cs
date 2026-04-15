@@ -1,33 +1,53 @@
 
 using UnityEngine;
 
+// Board, sahnedeki match-3 tahtasının arka plan grid'ini oluşturan ana sınıf.
 public class Board : MonoBehaviour
 {
-
+    // Tahtanın yatayda kaç hücre olacağını belirler.
     public int width;
+
+    // Her hücre için üretilecek arka plan tile prefab'ı.
     public GameObject tilePrefab;
+
+    // Tahtanın dikeyde kaç hücre olacağını belirler.
     public int height;
 
+    // Grid'deki bütün arka plan karelerini 2 boyutlu dizi olarak saklar.
+    // Şu an sadece oluşturuluyor; ileride hücrelere erişmek için kullanılabilir.
     private BackgroundTile[,] allTiles;
+
     void Start()
     {
-        allTiles = new BackgroundTile[width, height];
-        // SetUp();
+        // Oyun başlarken width x height boyutunda bir grid bellekte hazırlanır.
+     allTiles = new BackgroundTile[width, height];
+
+        // Tahtanın görsel arka planını sahneye dizer.
+        SetUp();
     }
 
-    // Update is called once per frame
+    // Tahtadaki bütün arka plan karelerini tek tek üretir ve Board nesnesinin altına yerleştirir.
     private void SetUp()
     {
+        // X ekseninde soldan sağa ilerler.
         for (int i = 0; i < width; i++)
         {
+            // Her sütunun içinde Y ekseninde aşağıdan yukarı hücreleri oluşturur.
             for (int j = 0; j < height; j++)
             {
-                //for instantiate  Object , Vector3 position, Quaternion rotation
+                // Bu tile'ın grid üzerindeki konumu.
                 Vector2 tempPosition = new Vector2(i, j);
-                Instantiate(tilePrefab, tempPosition, Quaternion.identity);
-                //quaternion.identity regular roatation
+
+                // Prefab'ı belirtilen pozisyonda, varsayılan rotasyonla sahneye üretir.
+                GameObject backgroundTile = Instantiate(tilePrefab, tempPosition, Quaternion.identity) as GameObject;
+
+                // Hierarchy'de düzenli görünmesi için üretilen objeyi Board'un altına bağlar.
+                backgroundTile.transform.parent = this.transform;
+
+                // Inspector/Hierarchy tarafında hangi hücre olduğunu görmek kolaylaşır.
+                backgroundTile.name = "( " + i + ", " + j + " )";
+                // Quaternion.identity: objeyi ekstra döndürmeden, sıfır rotasyonla oluşturur.
             }
         }
-
     }
 }
