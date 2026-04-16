@@ -9,19 +9,19 @@ public class Board : MonoBehaviour
 
     // Her hücre için üretilecek arka plan tile prefab'ı.
     public GameObject tilePrefab;
-
+    public GameObject[] dots;
     // Tahtanın dikeyde kaç hücre olacağını belirler.
     public int height;
 
     // Grid'deki bütün arka plan karelerini 2 boyutlu dizi olarak saklar.
     // Şu an sadece oluşturuluyor; ileride hücrelere erişmek için kullanılabilir.
     private BackgroundTile[,] allTiles;
-
+    public GameObject[,] allDots;
     void Start()
     {
         // Oyun başlarken width x height boyutunda bir grid bellekte hazırlanır.
-     allTiles = new BackgroundTile[width, height];
-
+        allTiles = new BackgroundTile[width, height];
+        allDots = new GameObject[width, height];
         // Tahtanın görsel arka planını sahneye dizer.
         SetUp();
     }
@@ -46,7 +46,15 @@ public class Board : MonoBehaviour
 
                 // Inspector/Hierarchy tarafında hangi hücre olduğunu görmek kolaylaşır.
                 backgroundTile.name = "( " + i + ", " + j + " )";
+
                 // Quaternion.identity: objeyi ekstra döndürmeden, sıfır rotasyonla oluşturur.
+
+                int dotToUse = Random.Range(0, dots.Length);
+                GameObject dot = Instantiate(dots[dotToUse], tempPosition, Quaternion.identity);
+
+                dot.transform.parent = this.transform;
+                dot.name = "( " + i + ", " + j + " )";
+                allDots[i, j] = dot;
             }
         }
     }

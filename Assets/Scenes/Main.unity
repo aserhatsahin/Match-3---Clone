@@ -371,6 +371,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Board
   width: 7
   tilePrefab: {fileID: 6796245941817409633, guid: db233ac35003c445ca54dfa0c44c8e1d, type: 3}
+  dots:
+  - {fileID: 3454237375610922004, guid: 05053bb8c6c3a45d6a8cfdf8b78668b4, type: 3}
+  - {fileID: 8939259227481347659, guid: 8435797ea5eac439ca65f2d56fd6a8a3, type: 3}
+  - {fileID: 5023217271933061506, guid: 88cc88592602f402a87340ed4c319565, type: 3}
+  - {fileID: 1049802205120576792, guid: c3635aa4b1fd04095b6aeb7d399a0f67, type: 3}
+  - {fileID: 396720038699192561, guid: eccd647b08638443f9fec536c478f7eb, type: 3}
+  - {fileID: 3993074592810525662, guid: 353e82c86cb934fdfb46f2be86ac0052, type: 3}
+  - {fileID: 708617222942849492, guid: 4ebbf574ee85245909d1a166fa16aae6, type: 3}
+  - {fileID: 9105538190440044933, guid: f19af781e7df14edcb133083dce14fc4, type: 3}
   height: 10
 --- !u!4 &1665006984
 Transform:
